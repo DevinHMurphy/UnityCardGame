@@ -139,9 +139,9 @@ public class Player : MonoBehaviour
 
     //change to play card
     public void PlayCard(Card targetCard){
-        if(mana > targetCard.currentManaCost){
+        if(mana > targetCard.manaCost){
             //board.Add(targetCard);
-            mana = mana - targetCard.currentManaCost;
+            mana = mana - targetCard.manaCost;
             Debug.Log(name + " summoned a " + targetCard.name);
             Debug.Log(name + " now has " + mana + " mana");
             hand.Remove(targetCard);

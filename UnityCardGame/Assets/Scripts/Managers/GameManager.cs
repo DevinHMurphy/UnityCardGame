@@ -7,38 +7,6 @@ using Random = UnityEngine.Random;
 //THIS HANDLES GAME EVENTS INSIDE ENCOUNTERS
 public class GameManager : MonoBehaviour
 {
-    
-    //STILL NEEDS TO BE BUILT OUT LOOK INTO HEARTHSTONE ANDVANCE PHASES
-    public enum GameEvent{ //Player Actions build out phases later 
-        game_start_phase,     //game initialized (this is a great to apply effects that start of game)
-        pre_game,
-        turn_start,     //a player has started turn
-        turn_end,       //a player has ended turn
-        card_played,    //any card played
-        minion_summoned, //battlecry
-        minion_damage,
-        minion_death, 
-        spell_played,
-        player_death,
-        effectPhase,
-        afterPhase,
-        game_end
-    }
-
-    public enum GameState{
-        initialize,
-        preGame,
-        player1Turn,
-        player2Turn,
-        player1Victory,
-        player2Victory,
-        draw,
-
-        aura_update, //aura updates health and attack of minions
-        death_check,
-
-    }
-
     public Player player1;
     public Player player2;
 
@@ -169,5 +137,47 @@ public class GameManager : MonoBehaviour
     }
 }
 
+public enum GameClassType{
+    Neutral,
+    Druid,
+    Hunter,
+    Mage,
+    Paladin,
+    Priest,
+    Rogue,
+    Shaman,
+    Warlock,
+    Warrior,
+    Enemy
+}
 
+//STILL NEEDS TO BE BUILT OUT LOOK INTO HEARTHSTONE ANDVANCE PHASES
+public enum GameEvent{ //Player Actions build out phases later 
+    game_start_phase,     //game initialized (this is a great to apply effects that start of game)
+    pre_game,
+    turn_start,     //a player has started turn
+    turn_end,       //a player has ended turn
+    card_played,    //any card played
+    minion_summoned, //battlecry
+    minion_damage,
+    minion_death, 
+    spell_played,
+    player_death,
+    effectPhase,
+    afterPhase,
+    game_end
+}
+
+public enum GameState{
+    initialize,
+    preGame,
+    player1Turn,
+    player2Turn,
+    player1Victory,
+    player2Victory,
+    draw,
+    aura_update, //aura updates health and attack of minions
+    death_check,
+
+}
 

@@ -3,27 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "New Minion", menuName = "ScriptableObject/Generic Minion")]
-public class MinionScriptableObject : CardReferenceScriptableObjects
+public class SpellScriptableObject : CardReferenceScriptableObjects
 {
     private GameObject cardObj;
-    private MinionCard outputCard;
 
-    public enum MinionType{
-        Neutral,
-        Beast,
-        Demon,
-        Dragon,
-        Elemental,
-        Homer,
-        Mech,
-        Murloc,
-        Naga,
-        Pirate,
-        Totem,
-        Undead
-    }
+    [SerializeField] private List<Effect> spellEffects = new List<Effect>();
 
-    
     public enum GameClassType{
         Neutral,
         Druid,
@@ -36,8 +21,6 @@ public class MinionScriptableObject : CardReferenceScriptableObjects
         Warlock,
         Warrior,
     }
-    
-
     
     public enum CardRarity{
         none,
@@ -55,19 +38,6 @@ public class MinionScriptableObject : CardReferenceScriptableObjects
     [SerializeField] public string description;
     public string Description {get {return description;}}
 
-    //public AudioClip summonSound;
-    //public AudioClip attackSound;
-    //public AudioClip deathSound;
-
-    /*
-    [SerializeField] private GameClassType gameClassType; 
-    public GameClassType thisClassType {get {return gameClassType;}}
-    [SerializeField] private MinionType minionTypes; //LATER CHANGE TO LIST
-    public MinionType thisMinionTypes {get {return minionTypes;}}
-    [SerializeField] private CardRarity minionRarity;   
-    public CardRarity thisRarity {get {return minionRarity;}}
-    */
-
     [SerializeField] private Sprite artwork;
     public Sprite Artwork {get {return artwork;}}
 
@@ -75,20 +45,13 @@ public class MinionScriptableObject : CardReferenceScriptableObjects
     [SerializeField] private int manaCost;
     public int ManaCost {get {return manaCost;}}
 
-
-    //public Minion defaultCardSummon;
-    [SerializeField] private int attack;
-    public int Attack {get {return attack;}}
-    [SerializeField] private int health;
-    public int Health {get {return health;}}
-
     public override GameObject ConvertToCard(){
-        //create a Card GameObject
+        //TO BE IMPLEMENTED
         cardObj = new GameObject(this.Name +"_Card");
-        outputCard = cardObj.AddComponent<MinionCard>();
-        outputCard.UpdateMinionCard(this);
         //ouputCard.UpdateMinionCard(this.Name, this.Description, this.Index, this.Artwork, this.Health, this.Attack, this.ManaCost);  
         return cardObj;
     }
+
+
 
 }

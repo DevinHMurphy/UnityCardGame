@@ -45,7 +45,7 @@ public class MinionCardDisplay : MonoBehaviour
 
             artworkImage.sprite = card.artwork;
 
-            manaText.text = card.currentManaCost.ToString();
+            manaText.text = card.manaCost.ToString();
             attackText.text = card.attack.ToString();
             healthText.text = card.health.ToString();
         

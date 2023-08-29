@@ -4,7 +4,18 @@ using UnityEngine;
 
 public class SpellCard : Card
 {
-    public SpellCard(){
-        cardPlayType = CardPlayType.Spell;
+    //public scritable object used as reference but never altered
+    [SerializeField] public SpellScriptableObject spellSource;
+
+    //instantiated scriptableObject altered in gameplay
+    private SpellScriptableObject gameplayMinion;
+    
+    public GameObject displayPrefab;
+
+    public override void generateDisplay()
+    {
+
     }
+
+
 }
