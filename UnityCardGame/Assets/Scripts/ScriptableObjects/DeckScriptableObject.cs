@@ -11,8 +11,8 @@ public class DeckScriptableObject : ScriptableObject
     public string Name {get {return name;}}
 
 
-    [SerializeField] private List<CardReferenceScriptableObjects> deck = new List<CardReferenceScriptableObjects>();
-    public List<CardReferenceScriptableObjects> Deck {get {return deck;}}
+    [SerializeField] private List<ScriptableObject> deck = new List<ScriptableObject>();
+    public List<ScriptableObject> Deck {get {return deck;}}
 
     /*
     [SerializeField] private List<Card> deck = new List<Card>();

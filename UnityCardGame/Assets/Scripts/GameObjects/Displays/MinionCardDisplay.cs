@@ -8,46 +8,41 @@ public class MinionCardDisplay : MonoBehaviour
 {
     public MinionCard card;
 
-    public TextMeshProUGUI nameText;
-    public TextMeshProUGUI descriptionText;
-    public TextMeshProUGUI indexText;
+    private TextMeshProUGUI nameText;
+    private TextMeshProUGUI descriptionText;
+    private TextMeshProUGUI indexText;
 
-    public Image artworkImage;
+    private Image artworkImage;
 
-    public TextMeshProUGUI manaText;
-    public TextMeshProUGUI attackText;
-    public TextMeshProUGUI healthText;
+    private TextMeshProUGUI manaText;
+    private TextMeshProUGUI attackText;
+    private TextMeshProUGUI healthText;
 
+    public MinionCardDisplay(MinionCard input){
+        this.card = input;
+    }
+   
     public void SetCard(MinionCard input){
         this.card = input;
     }
 
-      public void SetCard(Card input){
-        if (input is MinionCard){
-            this.card = input;
-        } else{
-             Debug.Log("Error : Incorrect Card Type on " + this.gameObject.name );
-        }
-    }
-
-    public Card GetCard(){
-        return card;
+    public MinionCard GetCard(){
+        return this.card;
     }
 
     public void Render()
     {
         if(card != null){
             //this.gameObject.SetActive(true);
-            nameText.text = card.name;
-            descriptionText.text = card.description;
+            this.nameText.text = this.card.name;
 
-            indexText.text = "# " + card.index;
+            //indexText.text = "# " + card.index; //OUT OF SCOPE
 
-            artworkImage.sprite = card.artwork;
+            //artworkImage.sprite = card.artwork; //this needs to be re-worked
 
-            manaText.text = card.manaCost.ToString();
-            attackText.text = card.attack.ToString();
-            healthText.text = card.health.ToString();
+            //manaText.text = card.manaCost.ToString(); //For mana implementation
+            attackText.text = card.combatObject.getAttack().ToString();
+            healthText.text = card.combatObject.getHealth().ToString();
         
         } else{
             //this.gameObject.SetActive(false);

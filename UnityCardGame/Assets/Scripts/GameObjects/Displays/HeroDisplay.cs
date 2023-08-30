@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using TMPro;
 
 
-public class PlayerDisplay : MonoBehaviour
+public class HeroDisplay : MonoBehaviour
 {
     [SerializeField] private Player player;
 
@@ -25,9 +25,9 @@ public class PlayerDisplay : MonoBehaviour
 
         //artworkImage.sprite = card.artwork;
 
-        armorText.text = combatObject.armor.ToString();
-        attackText.text = combatObject.attack.ToString();
-        healthText.text = combatObject.health.ToString();
+        armorText.text = combatObject.getArmor().ToString();
+        attackText.text = combatObject.getAttack().ToString();
+        healthText.text = combatObject.getHealth().ToString();
     }
 
 

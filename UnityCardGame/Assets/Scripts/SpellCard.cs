@@ -8,13 +8,17 @@ public class SpellCard : Card
     [SerializeField] public SpellScriptableObject spellSource;
 
     //instantiated scriptableObject altered in gameplay
-    private SpellScriptableObject gameplayMinion;
+    private SpellScriptableObject gameplaySpell;
     
     public GameObject displayPrefab;
 
     public override void generateDisplay()
     {
 
+    }
+
+    public override void Start(){
+        generateDisplay();
     }
 
 

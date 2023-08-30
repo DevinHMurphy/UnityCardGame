@@ -12,9 +12,9 @@ public class SpellCombatObject : MonoBehaviour
     private int attack = 0;
 
     //Constructor
-    public CombatObject(int baseAttack, int attack){
-        this.attack = Attack;
-        this.baseAttack = BaseAttack; 
+    public SpellCombatObject(int baseAttack, int attack){
+        this.attack = attack;
+        this.baseAttack = baseAttack; 
     }
 
     public int getBaseAttack(){

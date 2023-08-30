@@ -56,9 +56,6 @@ public class MinionScriptableObject : ScriptableObject
     [SerializeField] private new string name;
     public string Name {get {return name;}}
 
-    [SerializeField] public string description;
-    public string Description {get {return description;}}
-
     //AUDIO FIELDS  -- OUT OF SCOPE
     /*
     [SerializeField] private AudioClip summonSound;
@@ -82,13 +79,8 @@ public class MinionScriptableObject : ScriptableObject
     [SerializeField] private int health;
     public int Health {get {return health;}}
 
-    public override GameObject ConvertToCard(){
-        //create a Card GameObject
-        cardObj = new GameObject(this.Name +"_Card");
-        outputCard = cardObj.AddComponent<MinionCard>();
-        outputCard.UpdateMinionCard(this);
-        //ouputCard.UpdateMinionCard(this.Name, this.Description, this.Index, this.Artwork, this.Health, this.Attack, this.ManaCost);  
-        return cardObj;
+    public GameObject ConvertToCard(){
+        return null;
     }
 
 }

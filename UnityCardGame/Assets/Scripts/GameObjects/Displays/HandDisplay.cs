@@ -21,26 +21,11 @@ public class HandDisplay : MonoBehaviour
     }
 
     public void UpdateInfo(){
-        currentHandSize = hand.GetSize();
-        for(int i = 0; i < handDisplay.Count; i++){
-               if( i <currentHandSize){
-                    if (!handDisplay[i].activeSelf){
-                        handDisplay[i].SetActive(true);
-                        card = hand.GetCard(i);
-                        if(card is MinionCard){
-                            mc = hand.GetCard(i);
-                            handDisplay[i].GetComponent<MinionCardDisplay>().SetCard(mc);
-                        }                        
-                    }
-                    else {
+        //update the the display of all cards inside the hand
 
-                    }
-               }
-               else{
-                handDisplay[i].SetActive(false);
-               }
-        }
-        //gameObject.SetActive(false);
+        //get each card in the hand
+
+        //update its display
     }
     public void Render()
     {

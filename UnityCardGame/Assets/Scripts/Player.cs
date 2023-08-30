@@ -83,9 +83,6 @@ public class Player : MonoBehaviour
 
     public HeroPower heroPower;
     */
-
-
-    /*
     void Start()
     {   
         //Create the Deck Object
@@ -103,46 +100,7 @@ public class Player : MonoBehaviour
         InitalizeStats();
         gameDeck.Shuffle();
     }
-    */
-    public void InitializeDeck(){
-        //Create the Deck Object
-        gameDeckObj = new GameObject(PlayerName +"_GameDeck");
-        //Make child of player
-        gameDeck = gameDeckObj.AddComponent<Deck>();
-        gameDeck.generateDeck(deck);
-        //gameDeck.Shuffle();
-        InitalizeStats();
-    }
-     public void InitializeCombatObjects(){
-        combatObjectObj = new GameObject(PlayerName +"_CombatObject");
-        combatObjectObj.transform.parent = this.gameObject.transform;
-        combatObject = combatObjectObj.AddComponent<CombatObject>();
-        combatObject.SetStats(maxHealth, baseHealth, health, baseArmor, armor, attack, baseAttack);
-     }
-     public void InitializeHand(){
-        handObj = new GameObject(PlayerName + "_Hand");
-        hand = handObj.AddComponent<Hand>();
-     }
-
-    public void InitalizeStats()
-    {
-        health = baseHealth;
-        attack = baseAttack;
-        armor = baseArmor;
-        fatigueCounter = 0;
-        //SetManaCrystals(1);
-        //RefreshMana();
-    }
-//Player: string -> Player
-//Purpose: Creates a Player Object
-    public Player(string name){
-        PlayerName = name
-        InitializeDeck();
-        InitializeHand();
-        InitializeCombatObjects();
-        InitalizeStats();
-    }
-
+    //Create the Hand Object
 
 
     //TakeDamage: int -> (void)
@@ -160,15 +118,6 @@ public class Player : MonoBehaviour
     public void ChangeCurrentHealth(int delta) {
         this.health = this.health + delta;
     }
-
-    //SetCurrentHealth: int -> (void)
-    //Purpose: to set the health of the specified person to the entered amount
-    //EFFECT: the health of the specified player will be changed to the entered amount
-    public void SetCurrentHealth(int amount){
-        this.health = amount;
-    }
-    //public Minion Board;
-    //public List<Card> board = new List<Card>();
     
     //DrawMultipleCards: int -> (void)
     //Purpose: to draw multiple cards from the game deck and put them in the player's hand
@@ -179,30 +128,7 @@ public class Player : MonoBehaviour
         }
     }
 
-    //DrawCard: -> (void)
-    //Purpose: to draw a card from the game deck and put them in the player's hand
-    //EFFECT: when called, the player's game deck will have the top card removed and added to their hand
-    public void DrawCard(){
-        //check if the game deck is created
-        if (gameDeck != null){
-            if(gameDeck.GetSize() > 0){
-                Card drawnCard = gameDeck.DrawCard();
-                hand.AddCard(drawnCard);
-                Debug.Log(PlayerName + " drew a " + drawnCard.name);
-            }
-            else {
-                fatigueCounter++;
-                Debug.Log(PlayerName + " gameDeck's empty and but tried to draw a card, they take " + fatigueCounter + " Damage");
-                TakeDamage(fatigueCounter);
-
-            }
-        } else{
-            Debug.Log(PlayerName + " gameDeck is null");
-
-        }
-
-    }
-
+    
 /*
     public void AddToCardHand(Card card){
         hand.AddCard(card);

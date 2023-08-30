@@ -12,7 +12,6 @@ public class Deck : MonoBehaviour
     public new string name; // QUESTION: This may be redundant and should be changed to a reference ID
 
     //public int size;
-    public CardConverter cardConverter;
     //public List<Card> deck = new List<Card>();
     public DeckScriptableObject referenceDeck;
 
@@ -55,10 +54,7 @@ public class Deck : MonoBehaviour
             gameplayDeck = ScriptableObject.Instantiate(referenceDeck);
         }
         if(gameplayDeck != null){
-            //use card converter to create a deck to be used in play
-            cardConverter = this.gameObject.AddComponent<CardConverter>();
-            deck.AddRange(cardConverter.ConvertCards(gameplayDeck.Deck, this.gameObject));
-            name = gameplayDeck.Name;
+          //convert the referenced cards into game-play cards
         }
 
     }
