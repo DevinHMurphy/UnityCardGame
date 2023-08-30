@@ -4,21 +4,30 @@ using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-//THIS HANDLES GAME EVENTS INSIDE ENCOUNTERS
-public class GameManager : MonoBehaviour
+/*
+    This manages an "in-game" section of the game
+*/
+public class GameManager : MonoBehaviour //THIS WHOLE CLASS NEEDS TO BE-RE-WRITTEN
 {
-    public Player player1;
-    public Player player2;
+    public SceneManager sceneManager;
 
-    public Player activePlayer;
-    public Player inactivePlayer;
+    public GameObject playerGameObject;
+    private Player player;
 
+
+    public GameObject combatManagerGameObject;
+    public CombatManager combatmanager; 
+    //ENEMY LOGIC GOES HERE
+
+
+    //IN-Game Event Manager
+
+    //Board Info
     public GameObject boardObj;
-    public Board board;
+    private Board board;
 
-    public GameState currentGameState;
 
-    void Start() 
+    void Start() //Call this on load of the Scene
     {
         //Set the gamestate to initialize
         currentGameState = GameState.initialize;
@@ -34,7 +43,7 @@ public class GameManager : MonoBehaviour
         Game();
     }
 
-
+    //LOOK INTO A CLICK SYSTEM TARGETTING SYSTEM
     void Update() 
     {
     if(Input.GetKeyDown(KeyCode.Space))
@@ -69,9 +78,14 @@ public class GameManager : MonoBehaviour
     }
 
     public void StartGame(){
-        //set the players to have the correct inital stats
-        player1.InitalizeStats();
-        player2.InitalizeStats();
+        //On start of game create all the neccessary components
+        //Initialize Players
+
+        //Initialize Decks
+
+        //Initialize Board --> Is this a scene tranisition?
+        player.InitalizeStats();
+        Enemy.InitalizeStats();
 
         //Choose who goes first
         Random.Range(0,1);
@@ -85,10 +99,11 @@ public class GameManager : MonoBehaviour
         //draw cards for each player
         activePlayer.DrawCard(3);
         inactivePlayer.DrawCard(3);
-        //inactivePlayer.addCardToHand(THECOIN) //***MAKE A COIN CARD
     }
 
-    public void GameOutComeCheck(){
+    public void GameOutComeCheck(){ //This checks for broadcast of potential Game-End Flags
+
+        //check if a player has been defeated -- THIS LOGIC CAN BE CLEANED UP
         if (player1.health <= 0) {
             if (player2.health <= 0){
                 currentGameState =  GameState.draw;
@@ -106,20 +121,31 @@ public class GameManager : MonoBehaviour
         //if both players have more than 0 health the game continues
     }
 
+    public void BeginPhase(Player currentPlayer){
 
-    public void Game(){
+    }
+
+    public Player getFirstplayer(){
+        //This logic will defined at a later time (Speed test? Random? ETC.)
+        //Temp will make the player always be first
+        return this.player;
+    }
+
+
+    public void Game(){ //Overall State Machine that tracks enacts the game state
         switch (currentGameState){
             case GameState.initialize: //set stats and draw cards needed
                 Debug.Log("The Game is initializing");
                 StartGame();
-                currentGameState = GameState.preGame;
+                currentGameState = GameState.Pregame;
                 break;
-            case GameState.preGame: //mulligan phase
-                //mulligan
-                SetTurn();
+            case GameState.preGame:
+                Debug.Log("The Game is About to Begin!");
+                
                 break;
-            case GameState.player1Turn:
+            case GameState.PlayerBeginPhase:
                 Debug.Log("Player 1's Turn Began");
+                player.draw();
                 break;
             case GameState.player2Turn:
                 Debug.Log("Player 2's Turn Began");
@@ -137,47 +163,18 @@ public class GameManager : MonoBehaviour
     }
 }
 
-public enum GameClassType{
-    Neutral,
-    Druid,
-    Hunter,
-    Mage,
-    Paladin,
-    Priest,
-    Rogue,
-    Shaman,
-    Warlock,
-    Warrior,
-    Enemy
-}
-
-//STILL NEEDS TO BE BUILT OUT LOOK INTO HEARTHSTONE ANDVANCE PHASES
-public enum GameEvent{ //Player Actions build out phases later 
-    game_start_phase,     //game initialized (this is a great to apply effects that start of game)
-    pre_game,
-    turn_start,     //a player has started turn
-    turn_end,       //a player has ended turn
-    card_played,    //any card played
-    minion_summoned, //battlecry
-    minion_damage,
-    minion_death, 
-    spell_played,
-    player_death,
-    effectPhase,
-    afterPhase,
-    game_end
-}
-
 public enum GameState{
-    initialize,
-    preGame,
-    player1Turn,
-    player2Turn,
-    player1Victory,
-    player2Victory,
-    draw,
-    aura_update, //aura updates health and attack of minions
-    death_check,
-
+    Initialize,
+    PreGame, //mulligan
+    PlayerBeginPhase,
+    PlayerMainPhase,
+    PlayerEndPhase,
+    EnemyBeginPhase,
+    EnemyrMainPhase,
+    EnemyEndPhase,
+    PlayerVictory,
+    EnemyVictory,
+     //aura_update, //Update all the minions
 }
+
 

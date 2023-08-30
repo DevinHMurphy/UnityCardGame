@@ -4,29 +4,31 @@ using System.Collections.Generic;
 using UnityEngine;
 using Random=UnityEngine.Random;
 
+/*
+    The hand class contains all the logic for "in-game" 
+    Hand mechanics. 
+*/
 
 public class Hand : MonoBehaviour {
+
+    private int maxHandSize = 10;
+    public List<GameObject> hand = new List<GameObject>();
 
     public Hand(){ 
     }
 
-    private int maxHandSize = 10;
-
-    public List<Card> hand = new List<Card>();
-
-
-    public void AddCard(Card newCard){
+    public void AddCard(GameObject newCard){
         if(maxHandSize > hand.Count) {
             hand.Add(newCard);
             newCard.gameObject.transform.parent = this.gameObject.transform;
         }
         else {
+            //Hand is too full, --> Card is not added 
             Debug.Log(name + "'s hand was too full!");
-            //don't add and still remove from deck :)
         }
     }
 
-    public void Remove(Card card){
+    public void Remove(GameObject card){
         hand.Remove(card);
     }
 
@@ -38,7 +40,7 @@ public class Hand : MonoBehaviour {
         hand.RemoveAt(index);
     }
 
-    public Card GetCard(int index){
+    public GameObject GetCard(int index){
         return hand[index];
     }
 
@@ -56,6 +58,7 @@ public class Hand : MonoBehaviour {
         hand.RemoveAt(Random.Range(0,hand.Count));
     }
 
+    //Change the cardLimit of a Hand
     public void SetMaxHandSize(int limit){
         maxHandSize = limit;
     }

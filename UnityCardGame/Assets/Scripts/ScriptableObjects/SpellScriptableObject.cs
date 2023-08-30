@@ -9,6 +9,7 @@ public class SpellScriptableObject : CardReferenceScriptableObjects
 
     [SerializeField] private List<Effect> spellEffects = new List<Effect>();
 
+    /*
     public enum GameClassType{
         Neutral,
         Druid,
@@ -31,6 +32,7 @@ public class SpellScriptableObject : CardReferenceScriptableObjects
         legendary,
         mythic
     }
+    */
 
     [SerializeField] private new string name;
     public string Name {get {return name;}}
