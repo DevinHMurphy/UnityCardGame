@@ -36,12 +36,12 @@ public class Player : MonoBehaviour
     public int health;
 
     public int baseArmor = 0;
-    public int armor;
+    //public int armor;
 
     public int attack;
     public int baseAttack = 0;
 
-    public int fatigueCounter = 0;
+    //public int fatigueCounter = 0;
 
     // -- out of scope (leaving for error problems)
     public int maxManaCrystals  = 10;
@@ -105,10 +105,10 @@ public class Player : MonoBehaviour
     public void InitializePlayer(){
         //Create the Deck Object
         gameDeckObj = new GameObject(name +"_GameDeck");
-        //Make child of player
+        //Make child of player (The Deck)
         gameDeck = gameDeckObj.AddComponent<Deck>();
         gameDeck.generateDeck(deck);
-        gameDeck.Shuffle();
+        //gameDeck.Shuffle();
         //Make Hand
         handObj = new GameObject(name + "_Hand");
         hand = handObj.AddComponent<Hand>();
