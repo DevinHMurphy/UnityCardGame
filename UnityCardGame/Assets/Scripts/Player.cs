@@ -36,12 +36,12 @@ public class Player : MonoBehaviour
     public int health;
 
     public int baseArmor = 0;
-    public int armor;
+    //public int armor;
 
     public int attack;
     public int baseAttack = 0;
 
-    public int fatigueCounter = 0;
+    //public int fatigueCounter = 0;
 
     // -- out of scope (leaving for error problems)
     public int maxManaCrystals  = 10;
