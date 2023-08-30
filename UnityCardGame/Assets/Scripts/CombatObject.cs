@@ -1,23 +1,30 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+/*
+    The combat object contains the values of each "in-game" 
+    object that is able to undergo combat. The combat manager 
+    uses multiple combatObjects to create a combat flow.
+*/
 public class CombatObject : MonoBehaviour
 {
     public int maxHealth = 0;
     public int baseHealth = 0;
     public int health = 0;
 
-    public int baseArmor = 0;
-    public int armor = 0;
-
     public int baseAttack = 0;
     public int attack = 0;
 
-
+    // -- out of scope but keep for constructor consistency 
+    public int baseArmor = 0;
+    public int armor = 0;
+    
+    //empty constructor
     public CombatObject(){
 
     }
 
+    //create a combat object
     public CombatObject(int MaxHealth, int BaseHealth, int Health, int Armor, int BaseArmor, int Attack, int BaseAttack){
         this.maxHealth = MaxHealth;
         this.baseHealth = BaseHealth;
@@ -28,6 +35,7 @@ public class CombatObject : MonoBehaviour
         this.baseAttack = BaseAttack; 
     }
 
+    //set all stats of the combat object
     public void SetStats(int MaxHealth, int BaseHealth, int Health, int Armor, int BaseArmor, int Attack, int BaseAttack){
         this.maxHealth = MaxHealth;
         this.baseHealth = BaseHealth;
@@ -75,5 +83,4 @@ public class CombatObject : MonoBehaviour
             health = health + amount;
         }
     }
-       //combatEntity target
 }

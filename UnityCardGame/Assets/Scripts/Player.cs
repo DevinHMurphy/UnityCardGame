@@ -2,8 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/*
+    The player class contains all of the objects a player needs to
+    participate in the "in-game" game flow.
+*/
+
 public class Player : MonoBehaviour
 {
+    /* -- classes are out of scope 
     public enum GameClassType{
         Neutral,
         Druid,
@@ -16,12 +22,15 @@ public class Player : MonoBehaviour
         Warlock,
         Warrior,
     }
+    */
 
     public new string name;
     //public string uid;
 
-    public GameClassType playerGameClass;
+    //public GameClassType playerGameClass; -- out of scope
 
+
+    //THIS NEEDS TO BE REWORKED --> Player -> combatObject -> (defined by the Hero they have chosen)
     public int maxHealth = 30;
     public int baseHealth = 30;
     public int health;
@@ -34,28 +43,42 @@ public class Player : MonoBehaviour
 
     public int fatigueCounter = 0;
 
+    // -- out of scope (leaving for error problems)
     public int maxManaCrystals  = 10;
     public int baseManaCrystals = 1;
     public int mana;
     public int currentManaCrystals;
 
+    /*
     public Weapon equippedWeapon;
 
     public HeroPower heroPower;
+    */
 
-    public int maxDeckSize = 30;
+    //Reference Objects 
+    //This field is to be set from ScriptableObject Dictionary and never interacted again.
+    [SerializeField] public ScriptableObject deckSourceReference;
+    //instantiated scriptableObject can be altered in gameplay
+    private ScriptableObject deckSource;
 
-    public DeckScriptableObject deck;
+    //This field is to be set from ScriptableObject Dictionary and never interacted again.
+    [SerializeField] public ScriptableObject heroSoruceReference;
+    //instantiated scriptableObject can be altered in gameplay
+    private ScriptableObject heroSource;
 
-    public Deck gameDeck;
+    // "In-game" Objects
     public GameObject gameDeckObj;
+    public Deck deck;
 
     public GameObject combatObjectObj;
     public CombatObject combatObject;
 
     public int maxHandSize = 10;
-    public Hand hand;
+
+    //Hand
     public GameObject handObj;
+    public Hand hand;
+ 
 
     public Player(){
         
@@ -191,6 +214,10 @@ public class Player : MonoBehaviour
     public void RefreshMana(){
         mana = currentManaCrystals;
     }
-    // Update is called once per frame
 
+
+    //Called every frame
+    public void Update(){
+
+    }
 }

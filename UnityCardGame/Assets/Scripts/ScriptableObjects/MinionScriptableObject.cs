@@ -3,11 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "New Minion", menuName = "ScriptableObject/Generic Minion")]
-public class MinionScriptableObject : CardReferenceScriptableObjects
+public class MinionScriptableObject : ScriptableObject
 {
+
+    [SerializeField] private string index;
+    public string Index {get {return index;}}
+
     private GameObject cardObj;
     private MinionCard outputCard;
 
+    /* -- OUT OF SCOPE
     public enum MinionType{
         Neutral,
         Beast,
@@ -23,7 +28,6 @@ public class MinionScriptableObject : CardReferenceScriptableObjects
         Undead
     }
 
-    
     public enum GameClassType{
         Neutral,
         Druid,
@@ -36,9 +40,7 @@ public class MinionScriptableObject : CardReferenceScriptableObjects
         Warlock,
         Warrior,
     }
-    
 
-    
     public enum CardRarity{
         none,
         common,
@@ -48,26 +50,24 @@ public class MinionScriptableObject : CardReferenceScriptableObjects
         legendary,
         mythic
     }
+        */
 
+    //DATA FIELDS
     [SerializeField] private new string name;
     public string Name {get {return name;}}
 
     [SerializeField] public string description;
     public string Description {get {return description;}}
 
-    //public AudioClip summonSound;
+    //AUDIO FIELDS  -- OUT OF SCOPE
+    /*
+    [SerializeField] private AudioClip summonSound;
+    public AudioClip Artwork {get {return summonSound;}} //This needs to be better built out
     //public AudioClip attackSound;
     //public AudioClip deathSound;
-
-    /*
-    [SerializeField] private GameClassType gameClassType; 
-    public GameClassType thisClassType {get {return gameClassType;}}
-    [SerializeField] private MinionType minionTypes; //LATER CHANGE TO LIST
-    public MinionType thisMinionTypes {get {return minionTypes;}}
-    [SerializeField] private CardRarity minionRarity;   
-    public CardRarity thisRarity {get {return minionRarity;}}
     */
 
+    //VISUAL FIELDS
     [SerializeField] private Sprite artwork;
     public Sprite Artwork {get {return artwork;}}
 

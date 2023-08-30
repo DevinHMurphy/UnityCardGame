@@ -2,9 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Deck : MonoBehaviour //***Should this be a mono?
+/*
+    The Deck : MonoBehaviour class, is the "in-game" Deck manager and class.
+    It handles all "in-game" actions the deck can undertake.
+*/
+public class Deck : MonoBehaviour
 {
-    public new string name;
+
+    public new string name; // QUESTION: This may be redundant and should be changed to a reference ID
 
     //public int size;
     public CardConverter cardConverter;

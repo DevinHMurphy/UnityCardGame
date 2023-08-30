@@ -1,6 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+/*
+    The card converter is an importable static class that 
+    handles the conversion from Card's reference objects (Scriptable Objects)
+    to the their "in-game" counterparts -- Data should be moved into Card itself
+*/
 
 public class CardConverter : MonoBehaviour
 {

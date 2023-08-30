@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Minion : MonoBehaviour
+public class Minion : MonoBehaviour //THIS WHOLE CLASS IS OUTDATED AND SHOULD BE MOVED & DELTED
 {
 
     [SerializeField] public MinionScriptableObject minionSource;
