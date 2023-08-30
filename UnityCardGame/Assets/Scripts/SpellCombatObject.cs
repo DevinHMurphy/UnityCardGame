@@ -8,12 +8,20 @@ using UnityEngine;
 */
 public class SpellCombatObject : MonoBehaviour
 {
-    public int baseAttack = 0;
-    public int attack = 0;
+    private int baseAttack = 0;
+    private int attack = 0;
 
     //Constructor
     public CombatObject(int baseAttack, int attack){
         this.attack = Attack;
         this.baseAttack = BaseAttack; 
+    }
+
+    public int getBaseAttack(){
+        return this.baseAttack;
+    }
+
+    public int getAttack(){
+        return this.attack;
     }
 }

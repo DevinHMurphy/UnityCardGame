@@ -4,15 +4,14 @@ using UnityEngine;
 
 public class CombatManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
+
+    public void attack(combatObject source, combatObject recipient){
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+    public void spellAttack(SpellCombatObject source, combatObject recipient){
+        recipient.Damage(source.getAttack());
+        //check if the recipient has been defeated
+        recipient.isDead();
     }
+
 }

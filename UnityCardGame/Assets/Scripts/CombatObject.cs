@@ -83,4 +83,13 @@ public class CombatObject : MonoBehaviour
             health = health + amount;
         }
     }
+
+    public boolean isDead(){
+        if (this.health > 0) {
+            return false ;
+        } else {
+            //do The logic to destroy the combat object in the game --> move creature to graveyard or broadcast death message
+            return true;
+        }
+    }
 }

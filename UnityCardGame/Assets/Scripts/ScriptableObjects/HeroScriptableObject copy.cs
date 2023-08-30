@@ -5,30 +5,17 @@ using UnityEngine;
 /*
     Reference Objects for playable Heroes
 */
-[CreateAssetMenu(fileName = "New Hero", menuName = "ScriptableObject/Hero/Empty Hero")]
-public class HeroScriptableObject : ScriptableObject
-{   
-    /* -- Class types are out of scope 
-    public enum GameClassType{
-        Neutral,
-        Druid,
-        Hunter,
-        Mage,
-        Paladin,
-        Priest,
-        Rogue,
-        Shaman,
-        Warlock,
-        Warrior,
-    }
-    */
-
+[CreateAssetMenu(fileName = "New Enemy", menuName = "ScriptableObject/Enemy/Empty Enemy")]
+public class EnemyScriptableObject : ScriptableObject
+{ 
     //Data Fields 
     [SerializeField] private new string name;
     public string Name {get {return name;}}
 
+    /*
     [SerializeField] public string description;
     public string Description {get {return description;}}
+    */
 
     //VISUAL FIELDS
     [SerializeField] private Sprite artwork;
