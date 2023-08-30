@@ -39,6 +39,7 @@ public class EnemyScriptableObject : ScriptableObject
     */
 
     public GameObject ConvertToGameObject(){
+        return null;
         //Create the Hero Object? --> This should probably be done in the "in-game" hero Object.
     }
 

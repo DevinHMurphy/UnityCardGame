@@ -52,7 +52,8 @@ public class HeroScriptableObject : ScriptableObject
     */
 
     public GameObject ConvertToGameObject(){
-        //Create the Hero Object? --> This should probably be done in the "in-game" hero Object.
+        //To Be Implemented
+        return null;
     }
 
 }

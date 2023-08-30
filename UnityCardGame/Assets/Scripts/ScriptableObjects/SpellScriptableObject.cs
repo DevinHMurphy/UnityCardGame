@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "New Minion", menuName = "ScriptableObject/Generic Minion")]
-public class SpellScriptableObject : CardReferenceScriptableObjects
+public class SpellScriptableObject : ScriptableObject
 {
     private GameObject cardObj;
 
@@ -47,7 +47,7 @@ public class SpellScriptableObject : CardReferenceScriptableObjects
     [SerializeField] private int manaCost;
     public int ManaCost {get {return manaCost;}}
 
-    public override GameObject ConvertToCard(){
+    public GameObject ConvertToCard(){
         //TO BE IMPLEMENTED
         cardObj = new GameObject(this.Name +"_Card");
         //ouputCard.UpdateMinionCard(this.Name, this.Description, this.Index, this.Artwork, this.Health, this.Attack, this.ManaCost);  

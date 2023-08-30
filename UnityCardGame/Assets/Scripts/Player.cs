@@ -57,9 +57,9 @@ public class Player : MonoBehaviour
 
     //Reference Objects 
     //This field is to be set from ScriptableObject Dictionary and never interacted again.
-    [SerializeField] public ScriptableObject deckSourceReference;
+    [SerializeField] public DeckScriptableObject deckSourceReference;
     //instantiated scriptableObject can be altered in gameplay
-    private ScriptableObject deckSource;
+    private DeckScriptableObject deckSource;
 
     //This field is to be set from ScriptableObject Dictionary and never interacted again.
     [SerializeField] public ScriptableObject heroSoruceReference;
@@ -67,7 +67,7 @@ public class Player : MonoBehaviour
     private ScriptableObject heroSource;
 
     // "In-game" Objects
-    public GameObject gameDeckObj;
+    public GameObject deckObj;
     public Deck deck;
 
     public GameObject combatObjectObj;
@@ -103,28 +103,17 @@ public class Player : MonoBehaviour
     }
     */
     public void InitializePlayer(){
+        //Create the Hero and Its Combat Object 
+
         //Create the Deck Object
-        gameDeckObj = new GameObject(name +"_GameDeck");
+        deckObj = new GameObject(name +"_GameDeck");
         //Make child of player
-        gameDeck = gameDeckObj.AddComponent<Deck>();
-        gameDeck.generateDeck(deck);
-        gameDeck.Shuffle();
-        //Make Hand
-        handObj = new GameObject(name + "_Hand");
-        hand = handObj.AddComponent<Hand>();
+        deck = deckObj.AddComponent<Deck>();
+        deck.generateDeck(deckSource);
 
-        //Create and populate character CombatObject
-        combatObjectObj = new GameObject(name +"_CombatObject");
-        combatObjectObj.transform.parent = this.gameObject.transform;
-        combatObject = combatObjectObj.AddComponent<CombatObject>();
-        combatObject.SetStats(maxHealth, baseHealth, health, baseArmor, armor, attack, baseAttack);
-        InitalizeStats();
-
+        //Create the Hand Object
 
     }
-
-    //public Minion Board;
-    //public List<Card> board = new List<Card>();
     
     public void DrawCard(int drawAmount){
         for (int i = 0; i < drawAmount; i++){
@@ -132,25 +121,25 @@ public class Player : MonoBehaviour
         }
     }
 
-    public void AddToCardHand(Card card){
+    public void AddToCardHand(GameObject card){
         hand.AddCard(card);
     }
 
     public void DrawCard(){
-        if (gameDeck != null){
-            if(gameDeck.GetSize() > 0){
-                Card tempCard = gameDeck.DrawCard();
+        if (deck != null){
+            if(deck.GetSize() > 0){
+                Card tempCard = deck.DrawCard();
                 hand.AddCard(tempCard);
                 Debug.Log(name + " drew a " + tempCard.name);
             }
             else {
                 fatigueCounter++;
-                Debug.Log(name + " gameDeck's empty and but tried to draw a card, they take " + fatigueCounter + " Damage");
+                Debug.Log(name + " deck's empty and but tried to draw a card, they take " + fatigueCounter + " Damage");
                 TakeDamage(fatigueCounter);
 
             }
         } else{
-            Debug.Log(name + " gameDeck is null");
+            Debug.Log(name + " deck is null");
 
         }
 

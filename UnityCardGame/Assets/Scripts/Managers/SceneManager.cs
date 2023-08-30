@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 /*
     The sceneManager manages navigation through
@@ -20,8 +21,11 @@ public class SceneManager : MonoBehaviour
         
     }
 
+    public void changeScene() {
     //NAVIGATION LOGIC NEEDS TO BE CREATED
+    }
 
 
-    
+
+
 }

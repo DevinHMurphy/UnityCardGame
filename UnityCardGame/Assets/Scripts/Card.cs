@@ -20,7 +20,6 @@ public abstract class Card : MonoBehaviour {
 
     //Constants
     public new string name;
-    private 
     /* -- Out of scope
     public int defaultManaCost;
     public int manaCost;
@@ -31,8 +30,8 @@ public abstract class Card : MonoBehaviour {
     public CardPlayType cardPlayType;
 
     //Card display prefab
-    private GameObject displayObject;
-    private GameObejct combatObject; 
+    private GameObject displayObject; //This 
+    private GameObject combatObject; 
 
 
 

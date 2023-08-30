@@ -8,21 +8,23 @@ using UnityEngine;
 */
 public class CombatObject : MonoBehaviour
 {
-    public int maxHealth = 0;
-    public int baseHealth = 0;
-    public int health = 0;
 
-    public int baseAttack = 0;
-    public int attack = 0;
+    private int maxHealth = 0;
+    private int baseHealth = 0;
+    private int health = 0;
+
+    private int baseAttack = 0;
+    private int attack = 0;
 
     // -- out of scope but keep for constructor consistency 
-    public int baseArmor = 0;
-    public int armor = 0;
+    private int baseArmor = 0;
+    private int armor = 0;
     
     //empty constructor
     public CombatObject(){
-
     }
+
+
 
     //create a combat object
     public CombatObject(int MaxHealth, int BaseHealth, int Health, int Armor, int BaseArmor, int Attack, int BaseAttack){
@@ -46,11 +48,74 @@ public class CombatObject : MonoBehaviour
         this.baseAttack = BaseAttack; 
     }
 
+    //getters and setters
       public void SetCurrentAttack(int value){
         attack = value;
     }
+    //maxHealth
+    public int getMaxHealth(){
+        return this.maxHealth;
+    }
+    public void setMaxHealth(int value){
+        this.maxHealth = value;
+    }
+    public void ChangeMaxHealth(int amount){
+        //increase the combat object's Max health
+        if(amount > 0){
+            this.maxHealth = this.maxHealth + amount;
+        }
+        //reduce the combat Object's Max health, ensuring the minimum is 1
+        else if(amount < 0){
+            if(this.maxHealth - amount > 0){
+                this.maxHealth = this.maxHealth - amount;
+            } else {
+                this.maxHealth = 1;
+            }
+        }
+        else return;
+    }
+    
+    //Base health
+    public void setBaseHealth(int value){
+        this.baseHealth = value;
+    }
+    public int getBaseHealth(){
+        return this.baseHealth;
+    }
 
-    public void ChangeCurrentAttack(int amount){
+    //CurrentHealth
+    public void setHealth(int value){
+        this.health = value;
+    }
+    public int getHealth(){
+        return this.health;
+    }
+    public void changeHealth(int amount){
+        if(amount > 0){
+            Heal(amount);
+        }
+        else if(amount < 0){
+            Damage(amount);
+        }
+        else return;
+    }
+
+    //Base attack
+    public void setBaseAttack(int value){
+        this.baseAttack = value;
+    }
+    public int getBaseAttack(){
+        return this.baseAttack;
+    }
+
+    //CurrentAttack (attack)
+    public int getAttack(){
+        return this.attack;
+    }
+    public void setAttack(int value){
+        this.attack = value;
+    }
+    public void changeAttack(int amount){
         if(attack + amount <= 0){
             //no negative attack
             attack = 0;
@@ -59,17 +124,14 @@ public class CombatObject : MonoBehaviour
         }
     }
 
-    public void SetDefaultHealth(int value){
-        baseHealth = value;
+    //baseArmor ALWAYS ZERO (in this scope)  -- no getters/setters
+
+    //armor
+    public void setArmor(int value){
+        this.armor = value;
     }
-    public void ChangeCurrentHealth(int amount){
-        if(amount > 0){
-            Heal(amount);
-        }
-        else if(amount < 0){
-            Damage(amount);
-        }
-        else return;
+    public int getArmor(){
+        return this.armor;
     }
 
     public void Damage(int amount){
@@ -83,8 +145,7 @@ public class CombatObject : MonoBehaviour
             health = health + amount;
         }
     }
-
-    public boolean isDead(){
+    public bool isDead(){
         if (this.health > 0) {
             return false ;
         } else {

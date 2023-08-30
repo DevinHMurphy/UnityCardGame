@@ -7,76 +7,38 @@ using UnityEngine;
 */
 public class MinionCard : Card
 {
-    private MinionDisplay minionDisplayObject; //Needs to be instantiated and on start()
-
     //public scritable object used as reference but never altered
     [SerializeField] public MinionScriptableObject minionSource;
     //instantiated scriptableObject altered in gameplay
     private MinionScriptableObject gameplayMinion;
+
+    private MinionCardDisplay minionDisplayObject; //Needs to be instantiated and on start()
+
+    public CombatObject combatObject;
     
     //Constructor
     public MinionCard(MinionScriptableObject minionSource){
-        //Set card type to minion -- OUT OF SCOPE
-        //this.cardType = CardType.minion;
+        //set the card to have a minion cardType
+        this.cardPlayType = CardPlayType.Minion;
 
         //Load a version of the minion for reading -- This is another level of security to ensure the original minion source is Never altered
-        gameplayMinion = ScriptableObject.Instantiate(minionSource);
-
-        //load information from Scriptable Object
-        this.health = this.defaultHealth = gameplayMinion.Health;
-        this.attack = this.defaultAttack = gameplayMinion.Attack;
-        //this.manaCost = this.defaultManaCost = gameplayMinion.ManaCost; -- OUT OF SCOPE
+        this.gameplayMinion = ScriptableObject.Instantiate(minionSource);
 
         this.name = gameplayMinion.Name;
-        this.description = gameplayMinion.Description;
-        //this.index = gameplayMinion.Index; -- This is redundant and does not matter to the gameplay, unless future features require it
 
-        //this.artwork = gameplayMinion.Artwork; -- Should be stored on the Display object
+        //construct the combatObject with the information from Scriptable Object
+        this.combatObject = new CombatObject(this.gameplayMinion.Health, this.gameplayMinion.Health, this.gameplayMinion.Health, 0, 0, this.gameplayMinion.Attack, this.gameplayMinion.Attack);
+
+        //Set the manaCost of the createdMinion Card -- OUT OF SCOPE
+
+        //Create the display Object for the minion based on a created prefab
     }
-    
-    //Update Card Info
-    public void UpdateMinionCard(string name,  string description, string index, Sprite artwork, int health, int attack, int manaCost){
-        this.cardType = CardType.minion;
-
-        this.health = this.defaultHealth = health;
-        this.attack = this.defaultAttack = attack;
-        this.manaCost = this.defaultManaCost = manaCost;
-
-        this.name = name;
-        this.description = description;
-        this.index = index;
-
-        this.artwork = artwork;
-    }
-
-    //Update all the in-game object of the MinionCard
-    public void UpdateMinionCard(MinionScriptableObject minionSource){
-        this.minionSource = minionSource;
-         //Set card type to minion
-        this.cardType = CardType.minion;
-
-        //Load a version of the minion for reading
-        gameplayMinion = ScriptableObject.Instantiate(this.minionSource);
-
-        //load information from Scriptable Object
-        this.health = this.defaultHealth = gameplayMinion.Health;
-        this.attack = this.defaultAttack = gameplayMinion.Attack;
-        this.manaCost = this.defaultManaCost = gameplayMinion.ManaCost;
-
-
-        this.name = gameplayMinion.Name;
-        this.description = gameplayMinion.Description;
-        this.index = gameplayMinion.Index;
-
-        this.artwork = gameplayMinion.Artwork;
-        //cardRarity = gameplayMinion.thisRarity;
-        //gameClassType = gameplayMinion.thisClassType; 
-    }  
-
-    public 
 
     public override void generateDisplay()
     {
-        
+    }
+
+    public override void Start(){
+        generateDisplay();
     }
 }

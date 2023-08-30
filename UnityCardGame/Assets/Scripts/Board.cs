@@ -13,7 +13,7 @@ public class Board : MonoBehaviour
     */
 
     //boardLimit Map stores the maximum unit count for the specific player or enemy
-    public Map<String, Integer> boardLimit = new HashMap<String, Integer>();
+    public Dictionary<string, int> boardLimit = new Dictionary<string, int>();
 
     public Sprite boardStyle;
 
@@ -22,12 +22,12 @@ public class Board : MonoBehaviour
     }
 
     public void Start(){
-        boardLimit.put("Player", 5);
+        boardLimit.Add("Player", 5);
         //boardLimit.put("Enemy", 5); //out of scope
     }
 
     public void AddToPlayerBoard(int index, GameObject gameObject){
-        player1Board.Insert(index ,gameObject);
+        playerBoard.Insert(index ,gameObject);
     }
 
     /*
