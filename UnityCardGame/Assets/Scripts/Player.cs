@@ -136,7 +136,7 @@ public class Player : MonoBehaviour
 //Player: string -> Player
 //Purpose: Creates a Player Object
     public Player(string name){
-        PlayerName = name
+        PlayerName = name;
         InitializeDeck();
         InitializeHand();
         InitializeCombatObjects();
@@ -214,10 +214,9 @@ public class Player : MonoBehaviour
     //EFFECT: the card will be removed from the players hand and put on the board
     //Assumption: Currently not accounting for Mana as it is outside of scope until next sprint
     public void PlaySummonableCard(Card targetCard){
-            Debug.Log(PlayerName + " summoned a " + targetCard.name);
-            Debug.Log(PlayerName + " now has " + mana + " mana");
-            hand.Remove(targetCard);
-        }
+        Debug.Log(PlayerName + " summoned a " + targetCard.name);
+        Debug.Log(PlayerName + " now has " + mana + " mana");
+        hand.Remove(targetCard);
     }
  
     //PlaySpellCard: int -> (void)

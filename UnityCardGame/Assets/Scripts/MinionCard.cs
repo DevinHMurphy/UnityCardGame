@@ -7,14 +7,20 @@ using UnityEngine;
 */
 public class MinionCard : Card
 {
-    //public scritable object used as reference but never altered
-    [SerializeField] public MinionScriptableObject minionSource;
-    //instantiated scriptableObject altered in gameplay
-    private MinionScriptableObject gameplayMinion;
+        public enum PlayState{
+        InDeck,
+        InHand,
+        InPlay
+    }
 
-    private MinionCardDisplay minionDisplayObject; //Needs to be instantiated and on start()
+    [SerializeField] public MinionScriptableObject minionSource; //Set in the Unity Editor
+    private MinionScriptableObject gameplayMinion; //private, alterable version of the source
+
+    private MinionCardDisplay minionCardDisplay; //Needs to be instantiated and on start()
 
     public CombatObject combatObject;
+
+    private MinionCard.PlayState myPlayState;
     
     //Constructor
     public MinionCard(MinionScriptableObject minionSource){
@@ -34,11 +40,24 @@ public class MinionCard : Card
         //Create the display Object for the minion based on a created prefab
     }
 
+    public MinionScriptableObject getGameplayMinion(){
+        return this.gameplayMinion;
+    }
+
+    public MinionCard.PlayState getPlayState(){
+        return this.myPlayState;
+    }
+    public void setPlayState(MinionCard.PlayState state){
+        this.myPlayState = state;
+    }
+
     public override void generateDisplay()
     {
+        this.minionCardDisplay = new MinionCardDisplay(this);
     }
 
     public override void Start(){
         generateDisplay();
     }
 }
+
